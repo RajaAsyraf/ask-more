@@ -9,6 +9,7 @@
 
                 <div class="card-body">
                     <a class="btn btn-primary" href="{{ route('questionnaire.questions.create', $questionnaire->id) }}">Add New Question</a>
+                    <a class="btn btn-primary" href="{{ route('surveys.show', [$questionnaire->id, Str::slug($questionnaire->title)]) }}">Take Survey</a>
                 </div>
             </div>
             @foreach($questionnaire->questions as $question)
