@@ -4,26 +4,24 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Questionnaires</div>
+            <div>
+                <a class="btn btn-primary" href="{{ route('questionnaire.create') }}">Create New Questionnaire</a>
+            </div>
+            <div class="card mt-4">
+                <div class="card-header">My Questionnaires</div>
 
                 <div class="card-body">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Title</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($questionnaires as $questionnaire)
-                                <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td><a href="{{ route('questionnaire.show', $questionnaire->id) }}">{{ $questionnaire->title }}</a></td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <ul class="list-group">
+                        @foreach($questionnaires as $questionnaire)
+                            <li class="list-group-item">
+                                <a href="{{ route('questionnaire.show', $questionnaire->id) }}">{{ $questionnaire->title }}</a>
+                                <div class="mt-2">
+                                    <small class="font-weight-bold">Share URL</small>
+                                    <p><a href="{{ $questionnaire->publicPath() }}">{{ $questionnaire->publicPath() }}</a></p>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

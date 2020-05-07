@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/questionnaire/{questionnaire}/questions/create', 'QuestionController@create')->name('questionnaire.questions.create');
     Route::post('/questionnaire/{questionnaire}/questions/create', 'QuestionController@store')->name('questionnaire.questions.create');
+    Route::delete('/questionnaire/{questionnaire}/questions/{question}', 'QuestionController@destroy')->name('questionnaire.questions.delete');
 
     Route::get('/surveys/{questionnaire}-{slug}', 'SurveyController@show')->name('surveys.show');
     Route::post('/surveys/{questionnaire}-{slug}', 'SurveyController@store')->name('surveys.store');
