@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class QuestionnaireController extends Controller
 {
+    public function index()
+    {
+        $questionnaires = auth()->user()->questionnaires()->get();
+        return view('questionnaire.index', compact('questionnaires'));
+    }
+
     public function create()
     {
         return view('questionnaire.create');

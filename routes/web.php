@@ -19,9 +19,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', function() {
+        return redirect()->route('questionnaire.index');
+    })->name('home');
+
+    Route::get('/questionnaire', 'QuestionnaireController@index')->name('questionnaire.index');
     Route::get('/questionnaire/create', 'QuestionnaireController@create')->name('questionnaire.create');
     Route::post('/questionnaire/create', 'QuestionnaireController@store')->name('questionnaire.create');
     Route::get('/questionnaire/show/{questionnaire}', 'QuestionnaireController@show')->name('questionnaire.show');
