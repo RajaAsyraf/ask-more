@@ -23,16 +23,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', function() {
         return redirect()->route('questionnaire.index');
     })->name('home');
-
+    
     Route::get('/questionnaire', 'QuestionnaireController@index')->name('questionnaire.index');
     Route::get('/questionnaire/create', 'QuestionnaireController@create')->name('questionnaire.create');
     Route::post('/questionnaire/create', 'QuestionnaireController@store')->name('questionnaire.create');
     Route::get('/questionnaire/{questionnaire}', 'QuestionnaireController@show')->name('questionnaire.show');
-
+    
     Route::get('/questionnaire/{questionnaire}/questions/create', 'QuestionController@create')->name('questionnaire.questions.create');
     Route::post('/questionnaire/{questionnaire}/questions/create', 'QuestionController@store')->name('questionnaire.questions.create');
     Route::delete('/questionnaire/{questionnaire}/questions/{question}', 'QuestionController@destroy')->name('questionnaire.questions.delete');
-
-    Route::get('/surveys/{questionnaire}-{slug}', 'SurveyController@show')->name('surveys.show');
-    Route::post('/surveys/{questionnaire}-{slug}', 'SurveyController@store')->name('surveys.store');
 });
+
+Route::get('/surveys/{questionnaire}-{slug}', 'SurveyController@show')->name('surveys.show');
+Route::post('/surveys/{questionnaire}-{slug}', 'SurveyController@store')->name('surveys.store');
