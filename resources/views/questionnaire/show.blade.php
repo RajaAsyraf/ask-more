@@ -11,6 +11,9 @@
                     <a class="btn btn-primary" href="{{ route('questionnaire.questions.create', $questionnaire->id) }}">Add New Question</a>
                     <a class="btn btn-primary" href="{{ route('surveys.show', [$questionnaire->id, Str::slug($questionnaire->title)]) }}">Take Survey</a>
                 </div>
+                <div class="card-footer">
+                    Total Responses: {{ $questionnaire->surveys->count() }}
+                </div>
             </div>
             @foreach($questionnaire->questions as $question)
                 <div class="card mt-4">
