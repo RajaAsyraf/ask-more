@@ -77,6 +77,12 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer class="footer my-2">
+            <div class="container">
+                <span class="text-muted">© 2020 Ask More.</span>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
