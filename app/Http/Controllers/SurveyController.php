@@ -20,7 +20,7 @@ class SurveyController extends Controller
         $data = $request->validated();
         $survey = $questionnaire->surveys()->create($data['survey']);
         $survey->responses()->createMany($data['responses']);
-        Mail::to($request->user())->send(new ThankYouSurvey($survey));
+        Mail::to($survey->email)->send(new ThankYouSurvey($survey));
         return view('survey.thankyou', compact('questionnaire'));
     }
 }
