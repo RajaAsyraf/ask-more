@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Questionnaire;
+use App\Mail\ThankYouSurvey;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreSurveyRequest;
 
 class SurveyController extends Controller
@@ -18,6 +20,7 @@ class SurveyController extends Controller
         $data = $request->validated();
         $survey = $questionnaire->surveys()->create($data['survey']);
         $survey->responses()->createMany($data['responses']);
+        Mail::to($request->user())->send(new ThankYouSurvey($survey));
         return view('survey.thankyou', compact('questionnaire'));
     }
 }
